@@ -67,11 +67,10 @@ fun PeachMarketApp(){
         bottomBar = {
             NavigationBar {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
+                val currentRoute = navBackStackEntry?.destination?.route
                 items.forEach { screen ->
                     NavigationBarItem(
-                        selected = currentDestination?.hierarchy?.any {
-                            it.route == screen.name } == true,
+                        selected = currentRoute == screen.name,
                         onClick = {
                             navController.navigate(screen.name){
                                 popUpTo(navController.graph.startDestinationId)

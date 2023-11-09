@@ -1,15 +1,20 @@
 package com.gdscknu.peachmarket.presentation.navigation
 
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.gdscknu.peachmarket.presentation.view.chat.ChatScreen
 import com.gdscknu.peachmarket.presentation.view.home.HomeScreen
+import com.gdscknu.peachmarket.presentation.view.home.SaleItemScreen
 import com.gdscknu.peachmarket.presentation.view.local.LocalScreen
 import com.gdscknu.peachmarket.presentation.view.myaround.MyAroundScreen
 import com.gdscknu.peachmarket.presentation.view.mypage.MyPageScreen
@@ -22,10 +27,13 @@ enum class Router(val korean: String) {
     MYPAGE("마이페이지"),
 
     ///
+    SALEITEM("판매글"),
+    ///
 
     LOGIN("로그인"),
     SIGNUP("회원가입"),
 }
+
 
 @Composable
 fun MyAppHost(navController: NavHostController, modifier: Modifier){
@@ -35,7 +43,17 @@ fun MyAppHost(navController: NavHostController, modifier: Modifier){
         modifier = modifier
     ){
         composable(Router.HOME.name){
-            HomeScreen()
+            HomeScreen(navController)
+        }
+        composable(
+            "${Router.SALEITEM.name}/{id}",
+            arguments= listOf(
+                navArgument("id"){
+                    type = NavType.IntType
+                }
+            )
+            ){
+            SaleItemScreen(it.arguments?.getInt("id") ?:0)
         }
         composable(Router.LOCAL.name){
             LocalScreen()
