@@ -1,4 +1,4 @@
-package com.gdscknu.peachmarket.ui.theme
+package com.gdscknu.peachmarket.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
