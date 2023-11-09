@@ -65,24 +65,30 @@ fun PeachMarketApp(){
     )
     Scaffold(
         bottomBar = {
-            NavigationBar {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentRoute = navBackStackEntry?.destination?.route
-                items.forEach { screen ->
-                    NavigationBarItem(
-                        selected = currentRoute == screen.name,
-                        onClick = {
-                            navController.navigate(screen.name){
-                                popUpTo(navController.graph.startDestinationId)
-                                launchSingleTop = true
+
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentRoute = navBackStackEntry?.destination?.route
+
+            if( currentRoute in items.map { it.name } ){
+                NavigationBar {
+                    items.forEach { screen ->
+                        NavigationBarItem(
+                            selected = currentRoute == screen.name,
+                            onClick = {
+                                navController.navigate(screen.name){
+                                    popUpTo(navController.graph.startDestinationId)
+                                    launchSingleTop = true
+                                }
+                            },
+                            icon = {
+                                Text(text = " ${screen.korean}")
                             }
-                        },
-                        icon = {
-                            Text(text = " ${screen.korean}")
-                        }
-                    )
+                        )
+                    }
                 }
             }
+
+
         }
     ) {paddingValues ->
         MyAppHost(navController = navController, modifier = Modifier.padding(paddingValues))
