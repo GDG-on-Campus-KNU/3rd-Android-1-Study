@@ -34,6 +34,8 @@ com-google-android-material-material = "1.10.0"
 # plugin
 androidStudioGradlePlugin = "8.1.1"
 kotlin = "1.8.10"
+androidx-appcompat-appcompat161 = "1.6.1"
+com-google-android-material-material1100 = "1.10.0"
 
 
 [libraries]
@@ -79,6 +81,8 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coi
 
 #paging
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging-compose" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat-appcompat161" }
+material = { group = "com.google.android.material", name = "material", version.ref = "com-google-android-material-material1100" }
 
 
 

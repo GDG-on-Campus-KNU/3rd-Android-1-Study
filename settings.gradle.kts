@@ -15,3 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "PeachMarket"
 include(":app")
+include(":domain")
+include(":data")
+include(":presentation")
