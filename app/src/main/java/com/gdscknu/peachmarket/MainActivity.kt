@@ -7,7 +7,15 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.AccountBox
+import androidx.compose.material.icons.rounded.Face
+import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.LocationOn
+import androidx.compose.material.icons.rounded.Person
+import androidx.compose.material.icons.rounded.Place
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -63,6 +71,13 @@ fun PeachMarketApp(){
         Router.CHAT,
         Router.MYPAGE
     )
+    val icons = listOf(
+        Icons.Rounded.Home,
+        Icons.Rounded.AccountBox,
+        Icons.Rounded.LocationOn,
+        Icons.Rounded.Face,
+        Icons.Rounded.Person
+    )
     Scaffold(
         bottomBar = {
 
@@ -71,7 +86,7 @@ fun PeachMarketApp(){
 
             if( currentRoute in items.map { it.name } ){
                 NavigationBar {
-                    items.forEach { screen ->
+                    items.forEachIndexed { index,screen ->
                         NavigationBarItem(
                             selected = currentRoute == screen.name,
                             onClick = {
@@ -81,6 +96,9 @@ fun PeachMarketApp(){
                                 }
                             },
                             icon = {
+                                   Icon(imageVector = icons[index], contentDescription = null)
+                            },
+                            label = {
                                 Text(text = " ${screen.korean}")
                             }
                         )
